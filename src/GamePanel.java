@@ -17,7 +17,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		final int END_STATE = 2;
 		int currentState = MENU_STATE;
 		Font titleFont;
-		Human hu = new Human(400, 600, 50, 100);
+		Human hu = new Human(400, 650, 25, 50);
 		
 		GamePanel(){
 			timer = new Timer(1000/60, this);
@@ -32,7 +32,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			
 		}
 		void updateGameState() {
-
+			hu.update();
 		}
 		void updateEndState() {
 			
@@ -46,9 +46,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			g.drawString("Emu Run", 600, 450);
 		}
 		void drawGameState(Graphics g) {
-			g.setColor(Color.CYAN);
+			g.setColor(Color.GRAY);
 			g.fillRect(0, 0, EmuRun.WI, 700);
-			g.setColor(Color.GREEN);
+			g.setColor(Color.DARK_GRAY);
 			g.fillRect(0, 700, EmuRun.WI, EmuRun.HE);
 			hu.draw(g);
 		}
@@ -63,7 +63,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		@Override
 		public void keyTyped(KeyEvent e) {
 			// TODO Auto-generated method stub
-			System.out.println("message0");
+			
 		}
 
 		@Override
@@ -71,6 +71,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			// TODO Auto-generated method stub
 			char kp = (char) e.getKeyChar();
 			int kc = (int) e.getKeyCode();
+			System.out.println("kc is " + kc);
 			if (kp == 10) {
 				if (currentState == MENU_STATE) {
 					currentState = GAME_STATE;
@@ -83,19 +84,13 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 				}
 			}
 			
-			if (kp == 'a') {
-				//rs.le = true;
-			}
-			if (kp == 'd') {
-				//rs.ri = true;
-			}
 			if (kp == 'w') {
-				//rs.up = true;
+				hu.jump = true;
 			}
 			if (kp == 's') {
-				//rs.dw = true;
+				hu.duck = true;
 			}
-			if (kp == 'k') {
+			if (kp == 32) {
 				//om.addProjectile(new Projectile(rs.x + 21, rs.y, 10, 10));
 			}
 		}
@@ -103,7 +98,13 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		@Override
 		public void keyReleased(KeyEvent e) {
 			// TODO Auto-generated method stub
-			System.out.println("message2");
+			char kr = (char) e.getKeyChar();
+			if (kr == 'w') {
+				hu.jump = false;
+			}
+			if (kr == 's') {
+				hu.duck = false;
+			}
 		}
 
 		@Override

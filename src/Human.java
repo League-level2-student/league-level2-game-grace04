@@ -11,15 +11,15 @@ public class Human extends GameObject{
 	void update() {
 		super.update();
 		if (jump == true) {
-			y += 5;
+			y -= 6;
 		}
 		if (duck == true) {
-			y -= 5;
+			y += 6;
 		}
 	}
 	
 	void draw(Graphics g) {
-		g.setColor(Color.YELLOW);
+		g.setColor(Color.LIGHT_GRAY);
 		g.fillRect(x, y, width, height);
 	}
 }
