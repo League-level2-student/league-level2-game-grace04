@@ -1,8 +1,14 @@
 import java.awt.Color;
 import java.awt.Graphics;
 
+import javax.swing.Timer;
+
 public class Human extends GameObject{
 
+	double velocity;
+	double strength;
+	double gravity;
+	
 	Human(int x, int y, int width, int height) {
 		super(x, y, width, height);
 		// TODO Auto-generated constructor stub
@@ -10,11 +16,17 @@ public class Human extends GameObject{
 
 	void update() {
 		super.update();
-		if (jump == true) {
-			y -= 6;
+		velocity += gravity;
+		if (y>650) {
+			velocity = 0;
+			y = 650;
 		}
-		if (duck == true) {
-			y += 6;
+		y += velocity;
+	}
+	
+	public void jump() {
+		if (y>=650) {
+			velocity = -10;
 		}
 	}
 	

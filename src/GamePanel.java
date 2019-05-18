@@ -83,11 +83,13 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 					//om = new ObjectManager(rs);
 				}
 			}
-			
-			if (kp == 'w') {
-				hu.jump = true;
+		
+			if (kc == 38) {
+				System.out.println("jump");
+				hu.jump();
 			}
-			if (kp == 's') {
+			if (kc == 40) {
+				System.out.println("duck");
 				hu.duck = true;
 			}
 			if (kp == 32) {
@@ -99,10 +101,13 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		public void keyReleased(KeyEvent e) {
 			// TODO Auto-generated method stub
 			char kr = (char) e.getKeyChar();
-			if (kr == 'w') {
+			int kc = (int) e.getKeyCode();
+			if (kc == 38) {
+				System.out.println("up");
 				hu.jump = false;
 			}
-			if (kr == 's') {
+			if (kc == 40) {
+				System.out.println("down");
 				hu.duck = false;
 			}
 		}
