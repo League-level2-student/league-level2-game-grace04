@@ -6,8 +6,7 @@ import javax.swing.Timer;
 public class Human extends GameObject{
 
 	double velocity;
-	double strength;
-	double gravity;
+	double gravity = 1;
 	
 	Human(int x, int y, int width, int height) {
 		super(x, y, width, height);
@@ -26,7 +25,7 @@ public class Human extends GameObject{
 	
 	public void jump() {
 		if (y>=650) {
-			velocity = -10;
+			velocity = -15;
 		}
 	}
 	

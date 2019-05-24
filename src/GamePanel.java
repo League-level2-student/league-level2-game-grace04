@@ -18,6 +18,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		int currentState = MENU_STATE;
 		Font titleFont;
 		Human hu = new Human(400, 650, 25, 50);
+		ObjectManager om = new ObjectManager(hu);
 		
 		GamePanel(){
 			timer = new Timer(1000/60, this);
@@ -32,7 +33,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			
 		}
 		void updateGameState() {
-			hu.update();
+			om.update();
 		}
 		void updateEndState() {
 			
@@ -50,7 +51,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			g.fillRect(0, 0, EmuRun.WI, 700);
 			g.setColor(Color.DARK_GRAY);
 			g.fillRect(0, 700, EmuRun.WI, EmuRun.HE);
-			hu.draw(g);
+			om.draw(g);
 		}
 		void drawEndState(Graphics g) {
 			g.setColor(Color.RED);
@@ -88,11 +89,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 				System.out.println("jump");
 				hu.jump();
 			}
-			if (kc == 40) {
-				System.out.println("duck");
-				hu.duck = true;
-			}
-			if (kp == 32) {
+			if (kp == 40) {
 				//om.addProjectile(new Projectile(rs.x + 21, rs.y, 10, 10));
 			}
 		}
@@ -105,10 +102,6 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			if (kc == 38) {
 				System.out.println("up");
 				hu.jump = false;
-			}
-			if (kc == 40) {
-				System.out.println("down");
-				hu.duck = false;
 			}
 		}
 
