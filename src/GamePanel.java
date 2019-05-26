@@ -30,7 +30,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		}
 		
 		void updateMenuState() {
-			
+			om.update();
 		}
 		void updateGameState() {
 			om.update();
@@ -80,8 +80,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 					currentState = END_STATE;
 				} else if (currentState == END_STATE) {
 					currentState = MENU_STATE;
-					//rs.isAlive = true;
-					//om = new ObjectManager(rs);
+					hu.isAlive = true;
+					om = new ObjectManager(hu);
 				}
 			}
 		
@@ -90,7 +90,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 				hu.jump();
 			}
 			if (kp == 40) {
-				//om.addProjectile(new Projectile(rs.x + 21, rs.y, 10, 10));
+				om.addProjectile(new Projectile(hu.x, hu.y, 10, 10));
 			}
 		}
 
