@@ -17,12 +17,15 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		final int END_STATE = 2;
 		int currentState = MENU_STATE;
 		Font titleFont;
+		Font normalFont;
 		Human hu = new Human(400, 650, 25, 50);
 		ObjectManager om = new ObjectManager(hu);
+		Projectile bu;
 		
 		GamePanel(){
 			timer = new Timer(1000/60, this);
 			titleFont = new Font("Courier", Font.PLAIN, 72);
+			normalFont = new Font("Courier", Font.ITALIC, 48);
 		}
 
 		void startGame() {
@@ -30,10 +33,15 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		}
 		
 		void updateMenuState() {
-			om.update();
+			
 		}
 		void updateGameState() {
 			om.update();
+			om.manageEnemies();
+			om.checkCollision();
+			if(hu.isAlive==false) {
+				currentState = END_STATE;
+			}
 		}
 		void updateEndState() {
 			
@@ -59,6 +67,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			g.setColor(Color.BLACK);
 			g.setFont(titleFont);
 			g.drawString("Game Over", 550, 450);
+			g.setFont(normalFont);
+			g.drawString(om.kill + " emus avoided", 530, 600);
 		}
 		
 		@Override
@@ -89,9 +99,6 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 				System.out.println("jump");
 				hu.jump();
 			}
-			if (kp == 40) {
-				om.addProjectile(new Projectile(hu.x, hu.y, 10, 10));
-			}
 		}
 
 		@Override
@@ -102,6 +109,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			if (kc == 38) {
 				System.out.println("up");
 				hu.jump = false;
+			}
+			if (kc == 40) {
+				om.addProjectile(new Projectile(hu.x+25, hu.y+15, 10, 10));
 			}
 		}
 
