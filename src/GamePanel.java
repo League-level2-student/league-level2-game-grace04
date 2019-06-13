@@ -5,7 +5,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -18,14 +21,26 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		int currentState = MENU_STATE;
 		Font titleFont;
 		Font normalFont;
-		Human hu = new Human(400, 650, 25, 50);
+		Human hu = new Human(400, 550, 100, 150);
 		ObjectManager om = new ObjectManager(hu);
 		Projectile bu;
+		public static BufferedImage ei;
+		public static BufferedImage pg;
+		public static BufferedImage pnog;
 		
 		GamePanel(){
 			timer = new Timer(1000/60, this);
 			titleFont = new Font("Courier", Font.PLAIN, 72);
 			normalFont = new Font("Courier", Font.ITALIC, 48);
+			try {
+                ei = ImageIO.read(this.getClass().getResourceAsStream("emuimage.png"));
+                pg = ImageIO.read(this.getClass().getResourceAsStream("persongun.png"));
+                pnog = ImageIO.read(this.getClass().getResourceAsStream("personnogun.png"));
+			} 
+			catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+        	}
 		}
 
 		void startGame() {
@@ -111,7 +126,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 				hu.jump = false;
 			}
 			if (kc == 40) {
-				om.addProjectile(new Projectile(hu.x+25, hu.y+15, 10, 10));
+				om.addProjectile(new Projectile(hu.x+100, hu.y+55, 10, 10));
 			}
 		}
 

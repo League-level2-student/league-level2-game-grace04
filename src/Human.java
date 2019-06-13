@@ -16,21 +16,20 @@ public class Human extends GameObject{
 	void update() {
 		super.update();
 		velocity += gravity;
-		if (y>650) {
+		if (y>550) {
 			velocity = 0;
-			y = 650;
+			y = 550;
 		}
 		y += velocity;
 	}
 	
 	public void jump() {
-		if (y>=650) {
-			velocity = -15;
+		if (y>=550) {
+			velocity = -20;
 		}
 	}
 	
 	void draw(Graphics g) {
-		g.setColor(Color.LIGHT_GRAY);
-		g.fillRect(x, y, width, height);
+		g.drawImage(GamePanel.pnog, x, y, width, height, null);
 	}
 }

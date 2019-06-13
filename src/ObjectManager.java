@@ -50,7 +50,7 @@ public class ObjectManager {
 	public void manageEnemies() {
 		enemySpawnTime = gen.nextInt(5000)+500;
 		if (System.currentTimeMillis() - enemyTimer >= enemySpawnTime) {
-			addEmu(new Emu(1500, 660, 50, 40));
+			addEmu(new Emu(1500, 600, 120, 100));
 			enemyTimer = System.currentTimeMillis();
 		}
 	}

@@ -17,7 +17,6 @@ public class Emu extends GameObject{
 	}
 	
 	void draw(Graphics g) {
-		g.setColor(Color.BLACK);
-		g.fillRect(x, y, width, height);
+		g.drawImage(GamePanel.ei, x, y, width, height, null);
 	}
 }
