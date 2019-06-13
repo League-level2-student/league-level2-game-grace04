@@ -24,7 +24,7 @@ public class Human extends GameObject{
 	}
 	
 	public void jump() {
-		if (y>=550) {
+		if (y>=540) {
 			velocity = -20;
 		}
 	}
