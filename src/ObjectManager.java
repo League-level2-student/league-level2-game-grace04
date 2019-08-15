@@ -64,6 +64,13 @@ public class ObjectManager {
 			enemyTimer = System.currentTimeMillis();
 		}
 	}
+	public void manageEggs() {
+		enemySpawnTime = gen.nextInt(5000)+750;
+		if (System.currentTimeMillis() - enemyTimer >= enemySpawnTime) {
+			addEgg(new Egg(1500, 525, 80, 50));
+			enemyTimer = System.currentTimeMillis();
+		}
+	}
 	
 	void purgeObjects() {
 		for(int i=pro.size()-1; i>=0; i--) {
@@ -86,6 +93,16 @@ public class ObjectManager {
 	}
 	
 	void checkCollision(){
+		for(Emu e : emu){
+			if(hu.collisionBox.intersects(e.collisionBox)){
+        		hu.isAlive = false;
+			}
+		}
+		for(Egg g : egg){
+			if(hu.collisionBox.intersects(g.collisionBox)){
+        		hu.isAlive = false;
+			}
+		}
 		for(Projectile pr : pro) {
 			for(Emu e : emu){
 				if(hu.collisionBox.intersects(e.collisionBox)){

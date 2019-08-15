@@ -17,6 +17,6 @@ public class Egg extends GameObject{
 	}
 	
 	void draw(Graphics g) {
-		//g.drawImage(GamePanel.ei, x, y, width, height, null);
+		g.drawImage(GamePanel.gi, x, y, width, height, null);
 	}
 }

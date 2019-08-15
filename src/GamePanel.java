@@ -24,6 +24,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		Human hu = new Human(400, 550, 100, 150);
 		ObjectManager om = new ObjectManager(hu);
 		Projectile bu;
+		public static BufferedImage gi;
 		public static BufferedImage ei;
 		public static BufferedImage pg;
 		public static BufferedImage pnog;
@@ -33,6 +34,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			titleFont = new Font("Courier", Font.PLAIN, 72);
 			normalFont = new Font("Courier", Font.ITALIC, 48);
 			try {
+				gi = ImageIO.read(this.getClass().getResourceAsStream("eggimage.png"));
                 ei = ImageIO.read(this.getClass().getResourceAsStream("emuimage.png"));
                 pg = ImageIO.read(this.getClass().getResourceAsStream("persongun.png"));
                 pnog = ImageIO.read(this.getClass().getResourceAsStream("personnogun.png"));
@@ -53,6 +55,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		void updateGameState() {
 			om.update();
 			om.manageEnemies();
+			om.manageEggs();
 			om.checkCollision();
 			if(hu.isAlive==false) {
 				currentState = END_STATE;
@@ -68,6 +71,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			g.setFont(titleFont);
 			g.setColor(Color.LIGHT_GRAY);
 			g.drawString("Emu Run", 600, 450);
+			g.setFont(normalFont);
+			g.drawString("Down to Jump, Up to Shoot, Don't Die", 250, 600);
 		}
 		void drawGameState(Graphics g) {
 			g.setColor(Color.GRAY);
