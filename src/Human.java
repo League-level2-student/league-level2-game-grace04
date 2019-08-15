@@ -16,7 +16,7 @@ public class Human extends GameObject{
 	void update() {
 		super.update();
 		velocity += gravity;
-		if (y>550) {
+		if (y>551) {
 			velocity = 0;
 			y = 550;
 		}
@@ -25,7 +25,7 @@ public class Human extends GameObject{
 	
 	public void jump() {
 		if (y>=540) {
-			velocity = -20;
+			velocity = -21;
 		}
 	}
 	

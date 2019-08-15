@@ -9,6 +9,7 @@ public class ObjectManager {
 	Projectile bu;
 	ArrayList<Projectile> pro = new ArrayList<Projectile>();
 	ArrayList<Emu> emu = new ArrayList<Emu>();
+	ArrayList<Egg> egg = new ArrayList<Egg>();
 	long enemyTimer = 0;
 	int enemySpawnTime;
 	int kill = 0;
@@ -28,6 +29,9 @@ public class ObjectManager {
 		for (Emu em : emu) {
 			em.update();
 		}
+		for (Egg eg : egg) {
+			eg.update();
+		}
 	}
 	
 	void draw(Graphics g) {
@@ -38,6 +42,9 @@ public class ObjectManager {
 		for (Emu em : emu) {
 			em.draw(g);
 		}
+		for (Egg eg : egg) {
+			eg.draw(g);
+		}
 	}
 	
 	void addProjectile(Projectile proj) {
@@ -45,6 +52,9 @@ public class ObjectManager {
 	}
 	void addEmu(Emu e) {
 		emu.add(e);
+	}
+	void addEgg(Egg g) {
+		egg.add(g);
 	}
 	
 	public void manageEnemies() {
@@ -68,16 +78,30 @@ public class ObjectManager {
 				kill++;
 			}
 		}
+		for(int i=egg.size()-1; i>=0; i--) {
+			if(egg.get(i).isAlive==false) {
+				egg.remove(i);
+			}
+		}
 	}
 	
 	void checkCollision(){
-		for(Emu e : emu){
-	        if(hu.collisionBox.intersects(e.collisionBox)){
+		for(Projectile pr : pro) {
+			for(Emu e : emu){
+				if(hu.collisionBox.intersects(e.collisionBox)){
 	        		hu.isAlive = false;
-	        }
-	        for(Projectile pr : pro) {
+				}
 				if(pr.collisionBox.intersects(e.collisionBox)) {
 					e.isAlive = false;
+					pr.isAlive = false;
+				}
+			}
+			for(Egg g : egg){
+				if(hu.collisionBox.intersects(g.collisionBox)){
+	        		hu.isAlive = false;
+				}
+				if(pr.collisionBox.intersects(g.collisionBox)) {
+					g.isAlive = false;
 					pr.isAlive = false;
 				}
 			}
