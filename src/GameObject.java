@@ -7,7 +7,6 @@ public class GameObject {
 	int y;
 	int width;
 	int height;
-	boolean jump;
 	boolean isAlive = true;
 	Rectangle collisionBox;
 	

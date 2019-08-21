@@ -58,14 +58,14 @@ public class ObjectManager {
 	}
 	
 	public void manageEnemies() {
-		enemySpawnTime = gen.nextInt(5000)+500;
+		enemySpawnTime = gen.nextInt(5000)+400;
 		if (System.currentTimeMillis() - enemyTimer >= enemySpawnTime) {
 			addEmu(new Emu(1500, 600, 120, 100));
 			enemyTimer = System.currentTimeMillis();
 		}
 	}
 	public void manageEggs() {
-		enemySpawnTime = gen.nextInt(5000)+750;
+		enemySpawnTime = gen.nextInt(5000)+600;
 		if (System.currentTimeMillis() - enemyTimer >= enemySpawnTime) {
 			addEgg(new Egg(1500, 525, 80, 50));
 			enemyTimer = System.currentTimeMillis();

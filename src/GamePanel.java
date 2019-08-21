@@ -21,6 +21,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		int currentState = MENU_STATE;
 		Font titleFont;
 		Font normalFont;
+		Font smallFont;
 		Human hu = new Human(400, 550, 100, 150);
 		ObjectManager om = new ObjectManager(hu);
 		Projectile bu;
@@ -31,8 +32,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		
 		GamePanel(){
 			timer = new Timer(1000/60, this);
-			titleFont = new Font("Courier", Font.PLAIN, 72);
-			normalFont = new Font("Courier", Font.ITALIC, 48);
+			titleFont = new Font("Courier", Font.BOLD, 72);
+			normalFont = new Font("Courier", Font.PLAIN, 48);
+			smallFont = new Font("Courier", Font.ITALIC, 24);
 			try {
 				gi = ImageIO.read(this.getClass().getResourceAsStream("eggimage.png"));
                 ei = ImageIO.read(this.getClass().getResourceAsStream("emuimage.png"));
@@ -70,9 +72,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			g.fillRect(0, 0, EmuRun.WI, EmuRun.HE);
 			g.setFont(titleFont);
 			g.setColor(Color.LIGHT_GRAY);
-			g.drawString("Emu Run", 600, 450);
+			g.drawString("Emu Run", 610, 450);
 			g.setFont(normalFont);
-			g.drawString("Down to Jump, Up to Shoot, Don't Die", 250, 600);
+			g.drawString("Up to Jump, Down to Shoot, Don't Die", 230, 650);
 		}
 		void drawGameState(Graphics g) {
 			g.setColor(Color.GRAY);
@@ -86,9 +88,11 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			g.fillRect(0, 0, EmuRun.WI, EmuRun.HE); 
 			g.setColor(Color.BLACK);
 			g.setFont(titleFont);
-			g.drawString("Game Over", 550, 450);
+			g.drawString("Game Over", 555, 450);
 			g.setFont(normalFont);
-			g.drawString(om.kill + " emus avoided", 530, 600);
+			g.drawString(om.kill + " EMUs avoided", 540, 600);
+			g.setFont(smallFont);
+			g.drawString("EMU = Extreme Mutilation Umbra", 543, 700);
 		}
 		
 		@Override
@@ -128,7 +132,6 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			int kc = (int) e.getKeyCode();
 			if (kc == 38) {
 				System.out.println("up");
-				hu.jump = false;
 			}
 			if (kc == 40) {
 				om.addProjectile(new Projectile(hu.x+100, hu.y+55, 10, 10));

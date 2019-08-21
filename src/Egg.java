@@ -10,7 +10,7 @@ public class Egg extends GameObject{
 
 	void update() {
 	    super.update();
-		x -= 15;
+		x -= 20;
 		if(x<0) {
 			isAlive = false;
 		}

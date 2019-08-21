@@ -10,7 +10,7 @@ public class Emu extends GameObject{
 	
 	void update() {
 	    super.update();
-		x -= 10;
+		x -= 15;
 		if(x<0) {
 			isAlive = false;
 		}
