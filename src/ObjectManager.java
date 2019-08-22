@@ -13,6 +13,7 @@ public class ObjectManager {
 	long enemyTimer = 0;
 	int enemySpawnTime;
 	int kill = 0;
+	int bull = 0;
 	Random gen = new Random();
 
 	
@@ -49,6 +50,7 @@ public class ObjectManager {
 	
 	void addProjectile(Projectile proj) {
 		pro.add(proj);
+		bull++;
 	}
 	void addEmu(Emu e) {
 		emu.add(e);

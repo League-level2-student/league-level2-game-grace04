@@ -9,6 +9,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -74,7 +75,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			g.setColor(Color.LIGHT_GRAY);
 			g.drawString("Emu Run", 610, 450);
 			g.setFont(normalFont);
-			g.drawString("Up to Jump, Down to Shoot, Don't Die", 230, 650);
+			g.drawString("Down to Jump, Up to Shoot, Don't Die", 230, 650);
 		}
 		void drawGameState(Graphics g) {
 			g.setColor(Color.GRAY);
@@ -82,10 +83,13 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			g.setColor(Color.DARK_GRAY);
 			g.fillRect(0, 700, EmuRun.WI, EmuRun.HE);
 			om.draw(g);
+			g.setColor(Color.BLACK);
+			g.setFont(smallFont);
+			g.drawString(12-om.bull + " bullets left", 10, 20);
 		}
 		void drawEndState(Graphics g) {
 			g.setColor(Color.RED);
-			g.fillRect(0, 0, EmuRun.WI, EmuRun.HE); 
+			g.fillRect(0, 0, EmuRun.WI, EmuRun.HE);
 			g.setColor(Color.BLACK);
 			g.setFont(titleFont);
 			g.drawString("Game Over", 555, 450);
@@ -127,14 +131,15 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 		@Override
 		public void keyReleased(KeyEvent e) {
-			// TODO Auto-generated method stub
-			char kr = (char) e.getKeyChar();
 			int kc = (int) e.getKeyCode();
 			if (kc == 38) {
 				System.out.println("up");
 			}
 			if (kc == 40) {
-				om.addProjectile(new Projectile(hu.x+100, hu.y+55, 10, 10));
+				if(om.bull<12) {
+					om.addProjectile(new Projectile(hu.x+100, hu.y+55, 10, 10));
+					//JOptionPane.showMessageDialog(null, "The Austrailians didn't get bullets, neither do you!");
+				}
 			}
 		}
 
