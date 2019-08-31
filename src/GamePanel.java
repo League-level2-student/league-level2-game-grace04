@@ -23,13 +23,15 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		Font titleFont;
 		Font normalFont;
 		Font smallFont;
-		Human hu = new Human(400, 550, 100, 150);
+		Human hu = new Human(400, 550, 90, 150);
 		ObjectManager om = new ObjectManager(hu);
 		Projectile bu;
 		public static BufferedImage gi;
 		public static BufferedImage ei;
 		public static BufferedImage pg;
 		public static BufferedImage pnog;
+		String code = "ExtremE3MutilatioN1UmbrA";
+		String ans;
 		
 		GamePanel(){
 			timer = new Timer(1000/60, this);
@@ -96,7 +98,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			g.setFont(normalFont);
 			g.drawString(om.kill + " EMUs avoided", 540, 600);
 			g.setFont(smallFont);
-			g.drawString("EMU = Extreme Mutilation Umbra", 543, 700);
+			g.drawString("Just like the Australians...", 555, 750);
 		}
 		
 		@Override
@@ -126,6 +128,13 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			if (kc == 38) {
 				System.out.println("jump");
 				hu.jump();
+			}
+			
+			if (kc == 16) {
+				ans = JOptionPane.showInputDialog(" ");
+				if (ans.contentEquals(code)) {
+					om.bull -= 1000000;
+				}
 			}
 		}
 

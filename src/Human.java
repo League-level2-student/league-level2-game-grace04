@@ -34,6 +34,6 @@ public class Human extends GameObject{
 	}
 	
 	void draw(Graphics g) {
-		g.drawImage(GamePanel.pnog, x, y, width, height, null);
+		g.drawImage(GamePanel.pnog, x, y, 100, height, null);
 	}
 }
